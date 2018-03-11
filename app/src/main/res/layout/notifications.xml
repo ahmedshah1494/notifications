@@ -7,7 +7,7 @@
     android:paddingLeft="@dimen/activity_horizontal_margin"
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
-    tools:context="com.example.mshah1.notifications.MainActivity$PlaceholderFragment">
+    tools:context="com.example.mshah1.notifications.Notifications">
 
     <TextView
         android:id="@+id/section_label"
@@ -26,15 +26,13 @@
         android:layout_height="match_parent"
         android:layout_alignParentBottom="true"
         android:layout_alignParentEnd="true"
-        android:layout_below="@+id/refresh_button"
-        android:fillViewport="true">
+        android:layout_below="@+id/refresh_button">
 
         <LinearLayout
             android:id="@+id/notification_list"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_below="@+id/section_label"
-            android:paddingBottom="50dp"
             android:orientation="vertical">
 
         </LinearLayout>

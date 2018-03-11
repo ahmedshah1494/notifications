@@ -91,6 +91,7 @@ public class Notifications extends Fragment{
             reader.beginArray();
             while (reader.hasNext()){
                 CardView notif = createNotificationFromJSON(reader);
+                Log.d("Adding Notif", notif.toString());
                 notifList.addView(notif);
             }
             reader.endArray();
@@ -100,10 +101,12 @@ public class Notifications extends Fragment{
     }
 
     private CardView createNotificationFromJSON(JsonReader reader){
-        String name="", roomNum="", category="", comments="";
+        String name="", roomNum="", category="", comments="", pk="";
         try {
             reader.beginObject();
             while (reader.hasNext()){
+                while (!reader.nextName().equals("pk")) reader.skipValue();
+                pk = reader.nextString();
                 while (!reader.nextName().equals("fields")) reader.skipValue();
                 reader.beginObject();
                 while (reader.hasNext()){
@@ -127,7 +130,7 @@ public class Notifications extends Fragment{
                 reader.endObject();
             }
             reader.endObject();
-            return createNotification(name, roomNum, category, comments);
+            return createNotification(name, roomNum, category, comments, pk);
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -146,13 +149,50 @@ public class Notifications extends Fragment{
                 return "";
         }
     }
-    private CardView createNotification(String name, String roomNum, String category, String comments){
+    class AcceptOnClickListener implements View.OnClickListener{
+        private String pk;
+        public AcceptOnClickListener(String pk){
+            this.pk = pk;
+        }
+        @Override
+        public void onClick(View v) {
+            removeNotification(this.pk);
+        }
+    }
+    private CardView createNotification(String name, String roomNum, String category, String comments, String pk){
+        Log.d("Creating", name);
         CardView notif = (CardView) inflater.inflate(R.layout.notif_card,container,false);
         ((TextView)notif.findViewById(R.id.notif_name)).setText(name);
         ((TextView)notif.findViewById(R.id.notif_room_num)).setText(roomNum);
         ((TextView)notif.findViewById(R.id.notif_cat)).setText(mapCategory(category));
         ((TextView)notif.findViewById(R.id.notif_comment)).setText(comments);
+        ((Button)notif.findViewById(R.id.notif_accept)).setOnClickListener(new AcceptOnClickListener(pk));
         notif.setVisibility(View.VISIBLE);
         return notif;
     }
+
+    private void removeNotification(String pk){
+        RequestQueue queue = Volley.newRequestQueue(this.context);
+        String url ="http://notifs4sidra.herokuapp.com/notifs/accept_notif/"+pk;
+
+// Request a string response from the provided URL.
+        StringRequest stringRequest = new StringRequest(Request.Method.GET, url,
+                new Response.Listener<String>() {
+                    @Override
+                    public void onResponse(String response) {
+                        // Display the first 500 characters of the response string.
+                        Log.d("Successfully Deleted", "");
+                        getNotifications();
+                    }
+                }, new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError error) {
+                Log.e("","That didn't work!");
+            }
+        });
+
+// Add the request to the RequestQueue.
+        queue.add(stringRequest);
+    }
+
 }

@@ -81,7 +81,7 @@
             android:text="Comments" />
 
         <Button
-            android:id="@+id/notif_submit"
+            android:id="@+id/notif_accept"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="Accept" />

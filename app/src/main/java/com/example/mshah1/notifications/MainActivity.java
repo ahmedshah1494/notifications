@@ -107,7 +107,9 @@ public class MainActivity extends AppCompatActivity {
                     view.context = this.c;
                     return view;
                 case 1:
-                    return new NewNotification();
+                    NewNotification nview = new NewNotification();
+                    nview.context = this.c;
+                    return nview;
                 default:
                     return null;
             }

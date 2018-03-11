@@ -6,25 +6,27 @@
     android:paddingLeft="@dimen/activity_horizontal_margin"
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
-    tools:context="com.example.mshah1.notifications.MainActivity$PlaceholderFragment">
+    tools:context="com.example.mshah1.notifications.Notifications">
 
     <LinearLayout
+        android:id="@+id/new_notif_form"
         android:layout_width="match_parent"
         android:layout_height="467dp"
         android:orientation="vertical"
         android:weightSum="1"
         android:layout_below="@+id/section_label">
 
+
         <EditText
-            android:id="@+id/editText7"
+            android:id="@+id/editText"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:ems="10"
-            android:hint="Name"
-            android:inputType="textPersonName" />
+            android:inputType="textPersonName"
+            android:text="Name" />
 
         <EditText
-            android:id="@+id/editText8"
+            android:id="@+id/new_room_num"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:ems="10"
@@ -32,7 +34,7 @@
             android:inputType="textPersonName" />
 
         <Spinner
-            android:id="@+id/spinner"
+            android:id="@+id/new_cat"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_weight="0.03"
@@ -40,7 +42,7 @@
             android:spinnerMode="dropdown" />
 
         <EditText
-            android:id="@+id/editText11"
+            android:id="@+id/new_comments"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:ems="10"
@@ -48,7 +50,7 @@
             android:inputType="textMultiLine" />
 
         <Button
-            android:id="@+id/button"
+            android:id="@+id/submit_notif"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="Add Notification" />
