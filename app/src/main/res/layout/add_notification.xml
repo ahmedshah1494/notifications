@@ -14,16 +14,22 @@
         android:layout_height="467dp"
         android:orientation="vertical"
         android:weightSum="1"
+        android:layout_alignParentBottom="true"
         android:layout_below="@+id/section_label">
 
 
+        <TextView
+            android:id="@+id/status"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+
         <EditText
-            android:id="@+id/editText"
+            android:id="@+id/new_name"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:ems="10"
             android:inputType="textPersonName"
-            android:text="Name" />
+            android:hint="Name" />
 
         <EditText
             android:id="@+id/new_room_num"

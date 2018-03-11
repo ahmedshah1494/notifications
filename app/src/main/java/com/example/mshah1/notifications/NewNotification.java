@@ -11,6 +11,7 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.LinearLayout;
 import android.widget.Spinner;
+import android.widget.TextView;
 
 import com.android.volley.AuthFailureError;
 import com.android.volley.Request;
@@ -70,6 +71,7 @@ public class NewNotification extends Fragment{
                         public void onResponse(String response) {
                             // response
                             Log.d("Response", response);
+                            ((TextView)form.findViewById(R.id.status)).setText("Notification Successfully Added");
                         }
                     },
                     new Response.ErrorListener()
@@ -77,7 +79,8 @@ public class NewNotification extends Fragment{
                         @Override
                         public void onErrorResponse(VolleyError error) {
                             // error
-                            Log.d("Error.Response", error.getMessage());
+                            Log.d("Error.Response","");
+                            ((TextView)form.findViewById(R.id.status)).setText("Notification couldn't be added.");
                         }
                     }
             ) {
