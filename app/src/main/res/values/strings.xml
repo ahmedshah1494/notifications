@@ -1,0 +1,10 @@
+<resources>
+    <string name="app_name">notifications</string>
+    <string name="action_settings">Settings</string>
+    <string name="section_format">Hello World from section: %1$d</string>
+    <string-array name="category_array">
+        <item>Paperwork</item>
+        <item>Printing</item>
+        <item>Refreshments</item>
+    </string-array>
+</resources>
